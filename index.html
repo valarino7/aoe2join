@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join AoE2 Lobby</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #1e1f22; color: #dbdee1;
+         display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+  a.btn { display: inline-block; margin-top: 16px; padding: 12px 28px; border-radius: 6px;
+          background: #5865f2; color: #fff; text-decoration: none; font-weight: 600; }
+  code { background: #2b2d31; padding: 4px 8px; border-radius: 4px; }
+  p.small { color: #949ba4; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="h">Opening Age of Empires II…</h1>
+  <p id="link"></p>
+  <a class="btn" id="btn" href="#">Join lobby</a>
+  <p class="small">AoE2 DE must already be running for the link to open the lobby.</p>
+</main>
+<script>
+  const id = new URLSearchParams(location.search).get("id") || "";
+  if (/^\d+$/.test(id)) {
+    const target = "aoe2de://0/" + id;
+    document.getElementById("link").innerHTML = "<code>" + target + "</code>";
+    document.getElementById("btn").href = target;
+    location.href = target;
+  } else {
+    document.getElementById("h").textContent = "Invalid lobby link";
+    document.getElementById("btn").style.display = "none";
+  }
+</script>
+</body>
+</html>
